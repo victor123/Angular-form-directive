@@ -1,0 +1,9 @@
+[
+    {"id":1, "name":"Washing Mechine", "discription": "none", "price":2300, "startDate":"20/08/2017"},
+    {"id":2, "name":"Fridge", "discription": "none", "price":23000, "startDate":"14/07/2017"},
+    {"id":3, "name":"Iron box", "discription": "none", "price":1700 , "startDate":"18/06/2017"},
+    {"id":4, "name":"Monitor", "discription": "none", "price":7500, "startDate":"25/05/2017"},
+    {"id":5, "name":"Aomputer Mechine", "discription": "none", "price":1200, "startDate":"20/04/2017"},
+    {"id":6, "name":"Chair", "discription": "none", "price":300, "startDate":"01/02/2017"}
+
+]

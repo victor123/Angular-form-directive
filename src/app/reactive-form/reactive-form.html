@@ -1,0 +1,76 @@
+
+<div class="col-lg-6 col-lg-offset-3">
+    <form [formGroup]="signform" (ngSubmit)="onSubmit(signform.value)" novalidate>
+     <div formGroupName="listForm">
+      <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" 
+          class="form-control" 
+          placeholder="Enter Name"
+          formControlName="name"
+          #name
+         >
+         <!-- <div class="error" *ngIf="!signform.get('listForm.name').valid && signform.get('listForm.name').touched && signform.get('listForm.name').dirty">
+          <span *ngIf="signform.get('listForm.name').errors['required']"> Please enter the value </span>
+          <span *ngIf="signform.get('listForm.name').errors['minlength']"> Enter min character </span>
+          <span *ngIf="signform.get('listForm.name').errors['maxlength']"> Not allowed more the 15 char. ({{name.value.length}})  </span>
+        </div> -->
+     <!-- <div class="error" *ngIf="!signform.get('listForm.name').valid && signform.get('listForm.name').touched"> Enter the Name</div> -->
+       <div class="error" *ngIf="signform.controls.listForm.controls['name'].hasError('required') && signform.controls.listForm.controls['name'].dirty && signform.controls.listForm.controls['name'].touched"> Enter the Name</div> 
+       <div class="error" *ngIf="signform.controls.listForm.controls['name'].hasError('maxlength')"> Maxium 15 letters allowed ({{name.value.length}})</div>  
+        
+           <div class="error" *ngIf="signform.controls.listForm.controls['name'].hasError('minlength')"> Minium 3 letters </div>
+    
+          <!-- <div class="error" *ngIf="signform.controls.listForm['name'].hasError('maxlength')"> Maxium 15 letters allowed  </div>  -->
+         
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last Name:</label>
+            <input type="text" 
+            class="form-control" 
+            placeholder="Enter Last Name" 
+            formControlName="lastname"
+          >
+          
+          </div>
+        </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" 
+            class="form-control" 
+            placeholder="Enter Email"
+            formControlName="email"
+           >
+            <div class="error" *ngIf="signform.controls['email'].hasError('required') && signform.controls['email'].dirty && signform.controls['email'].touched"> Ender the email ID </div>
+            <div class="error" *ngIf="signform.controls['email'].hasError('pattern')"> Enter valid email ID</div>
+           </div>
+    
+          <div class="form-group">
+            <label for="selecter">Select list:</label>
+            <select class="form-control"
+            formControlName="selecter"
+            >
+               <option [value]="null" [disabled]= 'true' [selected]="true">Select your option</option>
+              <option *ngFor="let val of seletor" [value]="val">{{val}}</option>
+              </select>
+
+            <div class="error" *ngIf="signform.controls['selecter'].hasError('required') && signform.controls['selecter'].dirty && signform.controls['selecter'].touched"> Select atleast one</div>
+           
+
+          </div>
+          <div class="form-group">
+         <div class="radio" *ngFor="let gender of genders">
+                <label>
+        <input type="radio"
+        formControlName="gender"
+        [value]="gender"
+      > {{gender}}
+        </label>
+          </div>
+          </div>
+        <!-- <div class="checkbox">
+          <label><input type="checkbox" name="remember"> Remember me</label>
+        </div> -->
+        <button type="submit" class="btn btn-primary" [disabled]="!signform.valid">Submit</button>
+      </form>
+    </div>

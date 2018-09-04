@@ -1,0 +1,24 @@
+
+<shoping (addRecipeList)="addlist($event)"></shoping>
+
+<div class="row">
+<div class="col-md-6">
+        <div class="row">
+                        <ul>
+                                        <li [class.active]="viewMode == '1'" (click)="viewMode ='1'"> 1 </li>
+                                        <li [class.active]="viewMode == '2'" (click)="viewMode ='2'"> 2 </li>
+                                      </ul>
+                                      <div [ngSwitch]="viewMode">
+                                        <div *ngSwitchCase="'1'"> 1 </div>
+                                        <div *ngSwitchCase="'2'"> 2 </div>
+                                      </div>
+<ul class="list-group">
+<li class="list-group-item" [ngClass]="{'white':i >= 2}"  *ngFor = 'let data of arraydata; let i = index '> 
+{{data.name}} ({{data.amount}})
+
+</li>
+
+</ul>
+</div>
+</div>
+</div>

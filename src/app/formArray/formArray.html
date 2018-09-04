@@ -1,0 +1,54 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" >
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" 
+      class="form-control" 
+      name="name"
+      formControlName="name">
+    </div>
+    <div class="form-group" formArrayName="items">
+    <div *ngFor="let item of form.get('items').controls; let i = index  ">
+       <div style="position: relative;" [formGroupName]="i">
+        <label for="lastname">Subject:</label>
+        <input type="text" 
+        class="form-control" 
+        placeholder="Enter Last Subject" 
+        name="lastname"
+        formControlName="lastname"
+       >
+        <button class="del" type="button" *ngIf="i > 0"
+            (click)="deleteRow(i)"
+            >Delete </button>
+      </div>
+  
+      </div>
+        <button class="btn btn-default" (click)="addForm()" style="margin-top:10px;">Add</button>
+
+      
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" 
+        class="form-control" 
+        placeholder="Enter Email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+        name="email"
+        formControlName="email">
+        <!-- <div class="error" *ngIf="!email.valid && email.touched"> Please ender the valid email </div> -->
+      </div>
+
+      <div class="form-group">
+        <label for="selecter">Select list:</label>
+        <select class="form-control" 
+         name="selecter"
+         formControlName="selecter">
+           <option value="undefined" [disabled]="true" [selected]="true" >Select your option</option>
+          <option *ngFor="let val of seletor" [value]="val">{{val}}</option>
+          </select>
+      </div>
+    <!-- <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div> -->
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+  </form>
+  <pre> {{form.value | json}} </pre>

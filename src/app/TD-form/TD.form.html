@@ -1,0 +1,64 @@
+
+<div class="col-lg-6 col-lg-offset-3">
+<form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" 
+      class="form-control" 
+      id="name" 
+      placeholder="Enter Name" 
+      name="name" required
+     
+      ngModel>
+    </div>
+    <button class="btn btn-default" (click)="onSuggest()" style="margin-bottom:10px">Suggest an Username</button>
+    <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input type="text" 
+        class="form-control" 
+        id="lastname" 
+        placeholder="Enter Last Name" 
+        name="lastname" required
+        ngModel>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" 
+        class="form-control" 
+        id="email" 
+        placeholder="Enter Email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+        name="email" required
+        ngModel
+        #email="ngModel">
+        <div class="error" *ngIf="!email.valid && email.touched"> Please ender the valid email </div>
+      </div>
+
+      <div class="form-group">
+        <label for="selecter">Select list:</label>
+        <select class="form-control" 
+         name="selecter" required
+         ngModel
+         [(ngModel)]="defaultValue"
+           >
+           <option value="undefined" disabled selected>Select your option</option>
+          <option *ngFor="let val of seletor" [value]="val">{{val}}</option>
+          </select>
+      </div>
+      <div class="form-group">
+     <div class="radio" *ngFor="let gender of genders">
+            <label>
+    <input type="radio" 
+    [value]="gender"
+    ngModel
+    name="gender" required> {{gender}}
+    </label>
+      </div>
+      </div>
+    <!-- <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div> -->
+    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+  </form>
+</div>
